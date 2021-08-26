@@ -1,0 +1,27 @@
+CREATE DATABASE IF NOT EXISTS UD26;
+USE UD26;
+
+CREATE TABLE CIENTIFICOS (
+DNI VARCHAR(9) PRIMARY KEY,
+NomApells VARCHAR(255)
+);
+
+CREATE TABLE PROYECTO(
+Id CHAR(4) PRIMARY KEY,
+Nombre VARCHAR(255),
+Horas INT
+);
+
+CREATE TABLE ASIGNADO_A(
+Cientifico VARCHAR(9),
+Proyecto CHAR(4),
+KEY (Cientifico, Proyecto),
+FOREIGN KEY (Cientifico) REFERENCES CIENTIFICOS (DNI) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY (Proyecto) REFERENCES PROYECTO (ID) ON DELETE CASCADE ON UPDATE CASCADE,
+PRIMARY KEY (Cientifico, Proyecto)
+);
+
+INSERT INTO CIENTIFICOS VALUES ("39930321K", "Sergio A"), ("44510991B", "Javi B"), ("24432910X", "Rosa A"), ("64470331C", "Marta B"), ("01531431E", "Rodrigo A"), ("75109845X", "Alberto A"), ("74158019Q", "Marcos Z"), ("50684531Y", "Laura B"), ("17319704Z", "Javier Z"), ("18684161L", "Cristina A");
+INSERT INTO PROYECTO VALUES ("AA", "Proyecto1", 100), ("BB", "Proyecto2", 100), ("CC", "Proyecto3", 900), ("DD", "Proyecto4", 300), ("JJ", "Proyecto5", 300), ("HH", "Proyecto6", 20), ("XX", "Proyecto7", 20), ("BBX", "Proyecto8", 30), ("BVV", "Proyecto9", 20), ("ZXD", "Proyecto10", 10);
+
+INSERT INTO ASIGNADO_A VALUES ("39930321K", "AA"), ("44510991B", "BB"), ("24432910X", "CC"), ("64470331C", "DD"), ("01531431E", "JJ"), ("75109845X", "HH"), ("74158019Q", "XX"), ("50684531Y", "BBX"), ("17319704Z", "BVV"), ("18684161L", "ZXD");
